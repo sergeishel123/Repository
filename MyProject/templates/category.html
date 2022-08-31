@@ -1,0 +1,46 @@
+{% include 'flatpages/default.html' %}
+<center>
+<h2>
+    Категории новостей/статей:
+</h2>
+    <hr>
+{% block content %}
+    <h4>
+<table>
+    <tr>
+        <td>
+            ID категории
+        </td>
+        <td>
+            Имя категории
+        </td>
+    </tr>
+{% for category in categories %}
+<tr>
+    <td>
+        {{category.id}}
+    </td>
+    <td>{{category.name}}</td>
+    <td>
+
+    </td>
+</tr>
+{% endfor %}
+</table>
+    </h4>
+<hr>
+</center>
+<h4>
+    Вы можете подписаться на рассылку новостей по категории:
+</h4>
+<h4>
+    Для этого введите id категории, на которую хотите подписаться
+</h4>
+
+<form action = '' method = 'POST'>
+            {% csrf_token %}
+            <label for = 'client_id'></label>
+            <input type = 'int' name = 'category_id'>
+            <input type = 'submit' value = 'Подписаться'>
+        </form>
+{% endblock content %}

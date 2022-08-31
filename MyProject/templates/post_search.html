@@ -1,0 +1,47 @@
+<center>
+    <h1>
+        Поиск новостей/статей
+    </h1>
+</center>
+
+{% block content %}
+{% load custom_tags %}
+{% load custom_filters %}
+<form action = '' method = 'get'>
+    {{filterset.form.as_p}} <h3>Образец введения даты см. столбец "Дата публикации"</h3>
+
+    <p>
+        <input type = 'submit' value = 'Найти'>
+    </p>
+</form>
+
+{% endblock content %}
+
+
+    <hr>
+    <h4>
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Текст
+                </td>
+            </tr>
+                {% for post in posts %}
+                <tr><td>
+                    {{post.heading|censor}}
+                </td>
+                <td>
+                    {{post.time_in|date:'d M Y'}}
+                </td>
+                <td>
+                    {{post.text|censor}}
+                </td></tr>
+                {% endfor %}
+        </table>
+    </h4>

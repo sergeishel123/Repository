@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости категории {{Category.name}}</title>
+</head>
+<body>
+    Новости категории {{Category.name}}
+    </h2>
+    <h3>Здравствуй, {{User.username}}!</h3>
+    {% for post in Posts %}
+<h4>
+    Ссылка <a href = "http://127.0.0.1:8000{{post.get_absolute_url}}">Статья</a>
+</h4>
+{% endfor %}
+</body>
+</html>

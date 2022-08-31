@@ -1,0 +1,81 @@
+{% include 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+<h3>
+<center>НОВОСТИ</center>
+</h3>
+<p></p>
+<p></p>
+<h5>
+    Количество новостей: {{posts|length}}
+</h5>
+<p></p>
+<p></p>
+
+{% block content %}
+
+
+    <hr>
+    <h4>
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Текст
+                </td>
+            </tr>
+                {% for post in posts %}
+                <tr><td>
+                    {{post.heading|censor}}
+                </td>
+                <td>
+                    {{post.time_in|date:'d M Y'}}
+                </td>
+                <td>
+                    {{post.text|censor|truncatewords:10}}
+                </td>
+                    <td>
+
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </h4>
+
+<center>
+    {% if page_obj.has_previous %}
+       {# Для каждой ссылки пагинации указываем обработку через новый тег #}
+       <a href="?{% url_replace page=1 %}">First</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?{% url_replace page=page_obj.paginator.num_pages %}">Last</a>
+       {% endif %}
+   {% endif %}
+</center>
+
+Пользователь <h4>{{user.username}}</h4>
+{% if is_not_author %}
+<p>
+    <button><a href = 'be/'>Стать автором</a></button>
+</p>
+{% endif %}
+
+
+
+{% endblock content %}
+

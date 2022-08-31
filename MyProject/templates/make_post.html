@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        {{New.heading}}
+        <hr>
+        {{New.text|truncatewords:50}}
+    </h2>
+    <h3>Здравствуй, {{User.username}}! Новая статья в твоём любимом разделе!</h3>
+    {{New.get_absolute_url}}
+<h4>
+    Ссылка <a href = "http://127.0.0.1:8000{{New.get_absolute_url}}">Новая Статья</a>
+</h4>
+</body>
+</html>
